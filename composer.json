@@ -1,0 +1,26 @@
+{
+    "name": "rudrax/cloudinary",
+    "type": "library",
+    "description": "Cloudinary library for Rudrax",
+    "keywords": ["rudra", "API", "cloudinary", "smarty"],
+    "license": "MIT",
+    "homepage": "http://api.spamjs.org",
+    "authors": [
+        {
+            "name": "Lalit Tanwar",
+            "email": "lalit.tanwar07@gmail.com",
+            "homepage": "http://lalittanwar.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": ""
+        }
+    },
+    "require": {
+        "cloudinary/cloudinary_php": "^1.4"
+    },
+    "suggest": {
+        "rudrax/boot": "1.*"
+    }
+}
