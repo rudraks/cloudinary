@@ -32,7 +32,6 @@ namespace app\service {
 
         public static function use_smarty_tags()
         {
-            echo("use_smarty_tags");
             return Smarty::addPluginsDir("../plugins");
         }
 
