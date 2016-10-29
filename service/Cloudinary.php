@@ -5,19 +5,21 @@ namespace app\service {
     class Cloudinary extends \Cloudinary
     {
         public static $RX_CONNECTED = false;
-        public static $cloud_name;
-        public static $notification_url = "api/image_upload";
+        public static $CLOUD_NAME;
+        public static $notification_url = "api/cloudinary/image_upload_callback";
 
         public static function rx_setup()
         {
             $config = \Config::get("CLOUDINARY_CONFIG");
+
+
             \Cloudinary::config(array(
                 "cloud_name" => $config["cloud_name"],
                 "api_key" => $config["api_key"],
                 "api_secret" => $config["api_secret"]
             ));
             if (isset($config["cloud_name"])) {
-                self::$cloud_name = $config["cloud_name"];
+                self::$CLOUD_NAME = $config["cloud_name"];
             }
             if (isset($config["notification_url"])) {
                 self::$notification_url = $config["notification_url"];
@@ -27,7 +29,7 @@ namespace app\service {
         public static function get_notification_url($params)
         {
             return \RudraX\Utils\Webapp::$REMOTE_HOST . "/" . self::$notification_url .
-            "?cloud_name=" . self::$cloud_name . "&" . http_build_query($params);
+            "?cloud_name=" . self::$CLOUD_NAME . "&" . http_build_query($params);
         }
 
         public static function use_smarty_tags()
@@ -48,6 +50,10 @@ namespace app\service {
         public static function image_tag($source, $options)
         {
             return cl_image_tag($source, $options);
+        }
+
+        public static function getImageData (){
+            return (array) json_decode(file_get_contents('php://input'), true);
         }
 
     }
