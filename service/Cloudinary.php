@@ -56,6 +56,10 @@ namespace app\service {
             return (array) json_decode(file_get_contents('php://input'), true);
         }
 
+        public static function delete ($public_id){
+            return \Cloudinary\Uploader::destroy($public_id);
+        }
+
     }
 
     Cloudinary::rx_setup();

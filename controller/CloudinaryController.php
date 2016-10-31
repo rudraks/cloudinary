@@ -9,7 +9,6 @@ namespace app\controller {
 
     class CloudinaryController extends AbstractController
     {
-
         /**
          * @RequestMapping(url="api/cloudinary/image_upload_callback",type="json")
          * @RequestParams(true)
@@ -23,6 +22,5 @@ namespace app\controller {
             }
             return array();
         }
-
     }
 }
