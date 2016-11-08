@@ -17,7 +17,7 @@ namespace app\controller {
         {
             $imageData = Cloudinary::getImageData();
             $CloudinaryClassInstance = RX::handler("cloudinary");
-            if (is_null($CloudinaryClassInstance)) {
+            if (!is_null($CloudinaryClassInstance)) {
                 $CloudinaryClassInstance->image_upload_callback($imageData);
             }
             return array();
