@@ -10,8 +10,7 @@ namespace app\service {
 
         public static function rx_setup()
         {
-            $config = \Config::get("CLOUDINARY_CONFIG");
-
+            $config = \Config::getSection("CLOUDINARY_CONFIG");
 
             \Cloudinary::config(array(
                 "cloud_name" => $config["cloud_name"],
