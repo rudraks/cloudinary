@@ -33,9 +33,8 @@
 
 function smarty_function_cl_image_tag($params, $template)
 {
-//    if(isset($params["cloud"])){
-//
-
-//    }
+    if(!isset($params["cloud_name"]) || empty($params["cloud_name"])){
+        $params["cloud_name"] = "NO_CLOUDE";
+    }
     return app\service\Cloudinary::image_tag($params["public_name"], $params);
 }
