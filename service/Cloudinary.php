@@ -51,12 +51,22 @@ namespace app\service {
             return cl_image_tag($source, $options);
         }
 
+        public static function image_url($source, $options)
+        {
+            return \Cloudinary::cloudinary_url($source, $options);
+        }
+
+
         public static function getImageData (){
             return (array) json_decode(file_get_contents('php://input'), true);
         }
 
         public static function delete ($public_id){
             return \Cloudinary\Uploader::destroy($public_id);
+        }
+
+        public static function upload ($file, $options = array()){
+            return \Cloudinary\Uploader::upload($file,$options);
         }
 
     }
