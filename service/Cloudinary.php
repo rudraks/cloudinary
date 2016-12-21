@@ -7,6 +7,7 @@ namespace app\service {
         public static $RX_CONNECTED = false;
         public static $CLOUD_NAME;
         public static $notification_url = "api/cloudinary/image_upload_callback";
+        public static $CLOUD_URL = null;
 
         public static function rx_setup()
         {
@@ -22,6 +23,9 @@ namespace app\service {
             }
             if (isset($config["notification_url"])) {
                 self::$notification_url = $config["notification_url"];
+            }
+            if (isset($config["cloud_url"])) {
+                self::$CLOUD_URL = $config["cloud_url"];
             }
         }
 
@@ -78,13 +82,21 @@ namespace app\service {
         public static function image_tag($source, $options)
         {
             $options = self::image_options_resolve($options);
-            return cl_image_tag($source, $options);
+            $imageUrl = cl_image_tag($source, $options);
+            if(!is_null(self::$CLOUD_URL)){
+                $imageUrl = str_replace("res.cloudinary.com",self::$CLOUD_URL,$imageUrl);
+            }
+            return $imageUrl;
         }
 
         public static function image_url($source, $options)
         {
             $options = self::image_options_resolve($options);
-            return \Cloudinary::cloudinary_url($source, $options);
+            $imageUrl = \Cloudinary::cloudinary_url($source, $options);
+            if(!is_null(self::$CLOUD_URL)){
+                $imageUrl = str_replace("res.cloudinary.com",self::$CLOUD_URL,$imageUrl);
+            }
+            return $imageUrl;
         }
 
 
