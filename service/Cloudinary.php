@@ -11,21 +11,23 @@ namespace app\service {
 
         public static function rx_setup()
         {
-            $config = \Config::getSection("CLOUDINARY_CONFIG");
+            if(class_exists("\Config")){
+                $config = \Config::getSection("CLOUDINARY_CONFIG");
 
-            \Cloudinary::config(array(
-                "cloud_name" => $config["cloud_name"],
-                "api_key" => $config["api_key"],
-                "api_secret" => $config["api_secret"]
-            ));
-            if (isset($config["cloud_name"])) {
-                self::$CLOUD_NAME = $config["cloud_name"];
-            }
-            if (isset($config["notification_url"])) {
-                self::$notification_url = $config["notification_url"];
-            }
-            if (isset($config["cloud_url"])) {
-                self::$CLOUD_URL = $config["cloud_url"];
+                \Cloudinary::config(array(
+                    "cloud_name" => $config["cloud_name"],
+                    "api_key" => $config["api_key"],
+                    "api_secret" => $config["api_secret"]
+                ));
+                if (isset($config["cloud_name"])) {
+                    self::$CLOUD_NAME = $config["cloud_name"];
+                }
+                if (isset($config["notification_url"])) {
+                    self::$notification_url = $config["notification_url"];
+                }
+                if (isset($config["cloud_url"])) {
+                    self::$CLOUD_URL = $config["cloud_url"];
+                }
             }
         }
 
