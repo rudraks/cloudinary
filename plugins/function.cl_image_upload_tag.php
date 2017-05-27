@@ -37,7 +37,7 @@ function smarty_function_cl_image_upload_tag($params, $template)
     return app\service\Cloudinary::image_upload_tag('image_id',
         array(
             "notification_url" => app\service\Cloudinary::get_notification_url($params),
-            "callback" => \RudraX\Utils\Webapp::$REMOTE_HOST ."/src/external/components/cloudinary/html",
-            "html" => array("multiple" => TRUE)
+            "callback" => \RudraX\Utils\Webapp::$REMOTE_HOST ."/src/external/components/cloudinary/html/cloudinary_cors.html",
+            "html" => array("multiple" => TRUE, "id" => isset($params["id"]) ? $params["id"] : "image_upload_tag_id" )
         ));
 }
